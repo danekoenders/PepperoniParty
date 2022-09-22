@@ -45,13 +45,13 @@ section {
 
 .second-horizontal-section {
     display: flex;
-    width: 52%;
+    width: 78%;
     align-items: center;
     justify-content: center;
 }
 
 .third-horizontal-section {
-    width: 36%;
+    width: 10%;
     background-color: #726767;
 }
 

@@ -1,8 +1,9 @@
 // import files
-import * as PIXI from 'pixi.js'
-import pizzaImage from './images/pizza.png'
+import * as PIXI from 'pixi.js';
+import pizzaImage from './images/pizza.png';
 import musicBackground from "url:./audio/bgm.mp3";
-import { Pizza } from "./pizza"
+import tomatosauceIngredient from "./images/tomatensaus.png";
+import { Pizza } from "./pizza";
 
 export class Game {
 
@@ -11,6 +12,7 @@ export class Game {
 	resetButton:any = document.getElementById('reset');
 	ingredientButtons:HTMLCollectionOf<Element>;
 	selectedIngredient:PIXI.Text;
+	tomatosauceIngredient:PIXI.Sprite;
 	oldIngredient:number;
 	currentIngredient:number;
 	pizza:Pizza;
@@ -19,7 +21,7 @@ export class Game {
 	
 	constructor() {
 		// create a pixi canvas
-		this.pixi = new PIXI.Application({ width: 800, height: 450});
+		this.pixi = new PIXI.Application({ width: 1400, height: 700});
 		this.pixiCanvas.appendChild(this.pixi.view);
 
 		this.ingredientButtons = document.getElementsByClassName('ingredient');
@@ -30,7 +32,8 @@ export class Game {
 		this.loader
 			.add('pizzaTexture', pizzaImage) // laadt de images in de variabelen uit de import
       		.add("bgm", musicBackground)
-
+			.add('tomatosauceTexture', tomatosauceIngredient)
+			
 		this.loader.load(() => this.loadCompleted());
 	}
 
@@ -38,6 +41,9 @@ export class Game {
 	loadCompleted() {
 		this.selectedIngredient = new PIXI.Text(`X`, {fontFamily : 'Arial', fontSize: 24, fill : 0xff1010, align : 'center'});
 		this.pixi.stage.addChild(this.selectedIngredient);
+
+		this.tomatosauceIngredient = new PIXI.Sprite(this.loader.resources["tomatosauceTexture"].texture!);
+		this.pixi.stage.addChild(this.tomatosauceIngredient);
 
 		this.pizza = new Pizza(
 			this.loader.resources["pizzaTexture"].texture!,
