@@ -1,0 +1,106 @@
+/* ---------------------------------------- */
+/* Pepperoni Party */
+/* ---------------------------------------- */
+
+/* General */
+body {
+    background-image: linear-gradient(to top, darkred, yellow);
+    font-size: 16px;
+    margin: 0;
+}
+
+main {
+    height: 100vh;
+}
+
+section {
+    display: flex;
+    max-height: 100%;
+}
+
+.header-section {
+    display: inline;
+    margin: 0 1em;
+}
+
+.header-section img {
+    height: 100%;
+}
+
+.play-section {
+    display: inline;
+    background-color: transparent;
+}
+
+/* Horizontal Sections */
+.first-horizontal-section {
+    display: flex;
+    width: 12%;
+    background-color: #726767;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 10px;
+}
+
+.second-horizontal-section {
+    display: flex;
+    width: 52%;
+    align-items: center;
+    justify-content: center;
+}
+
+.third-horizontal-section {
+    width: 36%;
+    background-color: #726767;
+}
+
+/* Pizza check boxes */
+.pizza-check-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 140px;
+    border: solid 1px black;
+    border-radius: 10px;
+    background-color: #514040;
+}
+
+.pizza-check-box-circle {
+    display: flex;
+    height: 80%;
+    aspect-ratio: 1/1;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    border: solid 1px #582d2d;
+    background-image: url('./images/pizzaplate.png');
+    background-size: cover;
+    background-position: center;
+    font-size: 4em;
+    color: #29da29;
+}
+
+/* Ingredient check boxes */
+.ingredient-check-box {
+    background-color: grey;
+    border: solid 1px black;
+    border-radius: 1rem;
+    width: 280px;
+    height: 140px;
+}
+
+.ingredient-check-box img {
+    border-radius: 1rem;
+    width: 100%;
+    height: 100%;
+}
+
+.ingredient-check-box input {
+    display: none;
+}
+
+.checked::before {
+    content: "\2713";
+}

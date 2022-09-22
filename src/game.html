@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script defer type="module" src="./game.ts"></script>
+    <title>Pepperoni Party</title>
+</head>
+
+<body>
+    <main>
+        <section>
+            <div class="first-horizontal-section">
+                <div class="pizza-check-box">
+                    <div class="pizza-check-box-circle checked"></div>
+                </div>
+                <div class="pizza-check-box">
+                    <div class="pizza-check-box-circle"></div>
+                </div>
+                <div class="pizza-check-box">
+                    <div class="pizza-check-box-circle"></div>
+                </div>
+                <div class="pizza-check-box">
+                    <div class="pizza-check-box-circle"></div>
+                </div>
+                <div class="pizza-check-box">
+                    <div class="pizza-check-box-circle"></div>
+                </div>
+                <div class="pizza-check-box">
+                    <div class="pizza-check-box-circle"></div>
+                </div>
+            </div>
+
+            <div class="second-horizontal-section">
+                <!-- PIXI Canvas -->
+                <div id="pixi-canvas"></div>
+            </div>
+
+            <div class="third-horizontal-section">
+                <div class="reset-check-box">
+                    <label for="">reset</label>
+                    <input type="checkbox" name="reset" id="reset">
+                </div>
+                <div class="ingredient-check-box">
+                    <label for="tomatosauce" ><img src="./images/tomatensaus.png"></label>
+                    <input type="checkbox" id="tomatosauce" name="tomatosauce" class="ingredient">
+                </div>
+                <div class="ingredient-check-box">
+                    <label for="cheese" ><img src="./images/kaasbakje.png"></label>
+                    <input type="checkbox" id="cheese" name="cheese" class="ingredient">
+                </div>
+                <div class="ingredient-check-box">
+                    <label for="onions" ><img src="./images/uienbakje.png"></label>
+                    <input type="checkbox" id="onions" name="onions" class="ingredient">test
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
