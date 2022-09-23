@@ -45,13 +45,13 @@ section {
 
 .second-horizontal-section {
     display: flex;
-    width: 78%;
+    width: 84%;
     align-items: center;
     justify-content: center;
 }
 
 .third-horizontal-section {
-    width: 10%;
+    width: 6%;
     background-color: #726767;
 }
 
@@ -83,14 +83,6 @@ section {
 }
 
 /* Ingredient check boxes */
-.ingredient-check-box {
-    background-color: grey;
-    border: solid 1px black;
-    border-radius: 1rem;
-    width: 280px;
-    height: 140px;
-}
-
 .ingredient-check-box img {
     border-radius: 1rem;
     width: 100%;

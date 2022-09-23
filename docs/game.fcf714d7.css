@@ -38,14 +38,14 @@ section {
 }
 
 .second-horizontal-section {
-  width: 78%;
+  width: 84%;
   justify-content: center;
   align-items: center;
   display: flex;
 }
 
 .third-horizontal-section {
-  width: 10%;
+  width: 6%;
   background-color: #726767;
 }
 
@@ -73,14 +73,6 @@ section {
   align-items: center;
   font-size: 4em;
   display: flex;
-}
-
-.ingredient-check-box {
-  width: 280px;
-  height: 140px;
-  background-color: gray;
-  border: 1px solid #000;
-  border-radius: 1rem;
 }
 
 .ingredient-check-box img {

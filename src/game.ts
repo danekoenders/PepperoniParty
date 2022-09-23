@@ -3,6 +3,8 @@ import * as PIXI from 'pixi.js';
 import pizzaImage from './images/pizza.png';
 import musicBackground from "url:./audio/bgm.mp3";
 import tomatosauceIngredient from "./images/tomatensaus.png";
+import cheeseIngredient from "./images/kaasbakje.png";
+import unionIngredient from "./images/uienbakje.png";
 import { Pizza } from "./pizza";
 
 export class Game {
@@ -13,6 +15,8 @@ export class Game {
 	ingredientButtons:HTMLCollectionOf<Element>;
 	selectedIngredient:PIXI.Text;
 	tomatosauceIngredient:PIXI.Sprite;
+	cheeseIngredient:PIXI.Sprite;
+	unionIngredient:PIXI.Sprite;
 	oldIngredient:number;
 	currentIngredient:number;
 	pizza:Pizza;
@@ -33,6 +37,8 @@ export class Game {
 			.add('pizzaTexture', pizzaImage) // laadt de images in de variabelen uit de import
       		.add("bgm", musicBackground)
 			.add('tomatosauceTexture', tomatosauceIngredient)
+			.add('cheeseTexture', cheeseIngredient)
+			.add('unionTexture', unionIngredient)
 			
 		this.loader.load(() => this.loadCompleted());
 	}
@@ -44,6 +50,35 @@ export class Game {
 
 		this.tomatosauceIngredient = new PIXI.Sprite(this.loader.resources["tomatosauceTexture"].texture!);
 		this.pixi.stage.addChild(this.tomatosauceIngredient);
+		
+		this.cheeseIngredient = new PIXI.Sprite(this.loader.resources["cheeseTexture"].texture!);
+		this.pixi.stage.addChild(this.cheeseIngredient);
+
+		this.unionIngredient = new PIXI.Sprite(this.loader.resources["unionTexture"].texture!);
+		this.pixi.stage.addChild(this.unionIngredient);
+
+		this.tomatosauceIngredient.scale.x = 0.5
+		this.tomatosauceIngredient.scale.y = 0.5
+		this.tomatosauceIngredient.x = 1200
+		this.tomatosauceIngredient.interactive = true
+        this.tomatosauceIngredient.buttonMode = true
+        this.tomatosauceIngredient.on('pointerdown', () => this.toggleIngredient("tomatosauce"))
+
+		this.cheeseIngredient.scale.x = 0.5
+		this.cheeseIngredient.scale.y = 0.5
+		this.cheeseIngredient.x = 1200
+		this.cheeseIngredient.y = 124
+		this.cheeseIngredient.interactive = true
+        this.cheeseIngredient.buttonMode = true
+        this.cheeseIngredient.on('pointerdown', () => this.toggleIngredient("cheese"))
+
+		this.unionIngredient.scale.x = 0.5
+		this.unionIngredient.scale.y = 0.5
+		this.unionIngredient.x = 1200
+		this.unionIngredient.y = 248
+		this.unionIngredient.interactive = true
+        this.unionIngredient.buttonMode = true
+        this.unionIngredient.on('pointerdown', () => this.toggleIngredient("union"))
 
 		this.pizza = new Pizza(
 			this.loader.resources["pizzaTexture"].texture!,
@@ -67,22 +102,17 @@ export class Game {
 		}
 	}
 
-	toggleIngredient() {
-		for (var x = 0; x < this.ingredientButtons.length; x++) {
-			if (typeof this.oldIngredient !== 'undefined' && this.oldIngredient != this.currentIngredient) {
-				if (this.oldIngredient != -1 && this.ingredientButtons[this.oldIngredient].checked) {
-					this.ingredientButtons[this.oldIngredient].checked = false;
-				}
-				this.oldIngredient = this.currentIngredient;
-			}
-			if (this.ingredientButtons[x].checked) {
-				this.currentIngredient = x;
-			}
+	toggleIngredient(type: string) {
+		if (type === "tomatosauce") {
+			this.currentIngredient = 0
+		} else if (type === "cheese") {
+			this.currentIngredient = 1
+		} else if (type === "union") {
+			this.currentIngredient = 2
 		}
 	}
 
 	update(delta:number) {
-		this.toggleIngredient();
 
 		if (this.currentIngredient != -1) {
 			this.selectedIngredient.text = this.ingredientButtons[this.currentIngredient].name;

@@ -538,6 +538,10 @@ var _bgmMp3 = require("url:./audio/bgm.mp3");
 var _bgmMp3Default = parcelHelpers.interopDefault(_bgmMp3);
 var _tomatensausPng = require("./images/tomatensaus.png");
 var _tomatensausPngDefault = parcelHelpers.interopDefault(_tomatensausPng);
+var _kaasbakjePng = require("./images/kaasbakje.png");
+var _kaasbakjePngDefault = parcelHelpers.interopDefault(_kaasbakjePng);
+var _uienbakjePng = require("./images/uienbakje.png");
+var _uienbakjePngDefault = parcelHelpers.interopDefault(_uienbakjePng);
 var _pizza = require("./pizza");
 class Game {
     pixiCanvas = document.getElementById("pixi-canvas");
@@ -554,7 +558,7 @@ class Game {
         // preload all the textures
         this.loader = new _pixiJs.Loader();
         this.loader.add('pizzaTexture', _pizzaPngDefault.default) // laadt de images in de variabelen uit de import
-        .add("bgm", _bgmMp3Default.default).add('tomatosauceTexture', _tomatensausPngDefault.default);
+        .add("bgm", _bgmMp3Default.default).add('tomatosauceTexture', _tomatensausPngDefault.default).add('cheeseTexture', _kaasbakjePngDefault.default).add('unionTexture', _uienbakjePngDefault.default);
         this.loader.load(()=>this.loadCompleted()
         );
     }
@@ -569,6 +573,33 @@ class Game {
         this.pixi.stage.addChild(this.selectedIngredient);
         this.tomatosauceIngredient = new _pixiJs.Sprite(this.loader.resources["tomatosauceTexture"].texture);
         this.pixi.stage.addChild(this.tomatosauceIngredient);
+        this.cheeseIngredient = new _pixiJs.Sprite(this.loader.resources["cheeseTexture"].texture);
+        this.pixi.stage.addChild(this.cheeseIngredient);
+        this.unionIngredient = new _pixiJs.Sprite(this.loader.resources["unionTexture"].texture);
+        this.pixi.stage.addChild(this.unionIngredient);
+        this.tomatosauceIngredient.scale.x = 0.5;
+        this.tomatosauceIngredient.scale.y = 0.5;
+        this.tomatosauceIngredient.x = 1200;
+        this.tomatosauceIngredient.interactive = true;
+        this.tomatosauceIngredient.buttonMode = true;
+        this.tomatosauceIngredient.on('pointerdown', ()=>this.toggleIngredient("tomatosauce")
+        );
+        this.cheeseIngredient.scale.x = 0.5;
+        this.cheeseIngredient.scale.y = 0.5;
+        this.cheeseIngredient.x = 1200;
+        this.cheeseIngredient.y = 124;
+        this.cheeseIngredient.interactive = true;
+        this.cheeseIngredient.buttonMode = true;
+        this.cheeseIngredient.on('pointerdown', ()=>this.toggleIngredient("cheese")
+        );
+        this.unionIngredient.scale.x = 0.5;
+        this.unionIngredient.scale.y = 0.5;
+        this.unionIngredient.x = 1200;
+        this.unionIngredient.y = 248;
+        this.unionIngredient.interactive = true;
+        this.unionIngredient.buttonMode = true;
+        this.unionIngredient.on('pointerdown', ()=>this.toggleIngredient("union")
+        );
         this.pizza = new _pizza.Pizza(this.loader.resources["pizzaTexture"].texture, this.pixi.screen.width, this.pixi.screen.height);
         this.pixi.stage.addChild(this.pizza);
         this.sound = this.loader.resources["bgm"].data;
@@ -582,17 +613,12 @@ class Game {
             return true;
         } else return false;
     }
-    toggleIngredient() {
-        for(var x = 0; x < this.ingredientButtons.length; x++){
-            if (typeof this.oldIngredient !== 'undefined' && this.oldIngredient != this.currentIngredient) {
-                if (this.oldIngredient != -1 && this.ingredientButtons[this.oldIngredient].checked) this.ingredientButtons[this.oldIngredient].checked = false;
-                this.oldIngredient = this.currentIngredient;
-            }
-            if (this.ingredientButtons[x].checked) this.currentIngredient = x;
-        }
+    toggleIngredient(type) {
+        if (type === "tomatosauce") this.currentIngredient = 0;
+        else if (type === "cheese") this.currentIngredient = 1;
+        else if (type === "union") this.currentIngredient = 2;
     }
     update(delta) {
-        this.toggleIngredient();
         if (this.currentIngredient != -1) this.selectedIngredient.text = this.ingredientButtons[this.currentIngredient].name;
         else this.selectedIngredient.text = `X`;
         this.pizza.update(delta, this.currentIngredient);
@@ -613,7 +639,7 @@ class Game {
 }
 new Game();
 
-},{"pixi.js":"dsYej","./images/pizza.png":"cCKfZ","url:./audio/bgm.mp3":"gSu7U","./images/tomatensaus.png":"iCfsf","./pizza":"kAG7L","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dsYej":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./images/pizza.png":"cCKfZ","url:./audio/bgm.mp3":"gSu7U","./images/tomatensaus.png":"iCfsf","./images/kaasbakje.png":"53CLE","./images/uienbakje.png":"fQu60","./pizza":"kAG7L","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dsYej":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "utils", ()=>_utils
@@ -37170,6 +37196,12 @@ module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "bgm.ca
 
 },{"./helpers/bundle-url":"lgJ39"}],"iCfsf":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "tomatensaus.16a9bf55.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"53CLE":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "kaasbakje.0de43fa7.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"fQu60":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "uienbakje.f7668527.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"kAG7L":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
